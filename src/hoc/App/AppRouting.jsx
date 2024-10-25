@@ -3,7 +3,8 @@ import MainPage from "../../pages/MainPage/HomePage.jsx";
 import LoginPage from "../../pages/LoginPage/LoginPage.jsx";
 import DeskPage from "../../pages/DeskPage/DeskPage.jsx";
 import RegistrationPage from "../../pages/RegistrationPage/RegistrationPage.jsx";
-import ProfilePage from "../../pages/ProfilePage/ProfilePage.jsx"
+import ProfilePage from "../../pages/ProfilePage/ProfilePage.jsx";
+import AdminPanelPage from "../../pages/AdminPanelPage/AdminPanelPage.jsx";
 
 const AppRouting = () => {
     return (
@@ -13,6 +14,7 @@ const AppRouting = () => {
             <Route path="/registration" element={<RegistrationPage />} />
             <Route path="/desk" element={<DeskPage />} />
             <Route path="/profile" element={<ProfilePage />} />
+            <Route path="/adminPanel" element={<AdminPanelPage />} />
         </Routes>
     )
 }
