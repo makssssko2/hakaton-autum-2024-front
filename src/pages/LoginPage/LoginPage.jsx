@@ -16,7 +16,7 @@ const LoginPage = () => {
         if(AuthStore.isAuth) {
             navigate('/')
         }
-    },[AuthStore.isAuth])
+    },[AuthStore.isAuth]);
 
     const submitHandler = async (e,inputs) => {
         e.preventDefault();
