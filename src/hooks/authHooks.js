@@ -9,12 +9,14 @@ const useValid = (value, validations) => {
     const [passEqualError,setPassEqualError] = useState(false);
     const [errors, setErrors] = useState({});
     const [correct, setCorrect] = useState(false);
+    const [isCyrillic, setIsCyrillic] = useState(false);
     useEffect(() => {
         const tempErrs = errors;
         for (const validation in validations) {
             switch (validation) {
                 case "isEmpty":
                     if (value && value.replace(/\s/g, "").length) {
+                        //console.log(tempErrs);
                         setIsEmpty(false);
                         tempErrs["isEmpty"] = null;
                         setErrors(tempErrs);
@@ -25,16 +27,23 @@ const useValid = (value, validations) => {
                     }
                     break;
                 case "minLength":
-                    if (value.length < validations[validation]) {
-                        setMinLengthError(true);
-                        tempErrs[
-                            "minLength"
-                            ] = `Поле должно содержать минимум ${validations[validation]} символов`;
-                        setErrors(tempErrs);
-                    } else {
+                    if(tempErrs["isEmpty"] === null){
+                        if (value.length < validations[validation]) {
+                            setMinLengthError(true);
+                            tempErrs[
+                                "minLength"
+                                ] = `Поле должно содержать минимум ${validations[validation]} символов`;
+                            setErrors(tempErrs);
+                        } else {
+                            setMinLengthError(false);
+                            tempErrs["minLength"] = null;
+                            setErrors(tempErrs);
+                        }
+                    }
+                    else{
                         setMinLengthError(false);
                         tempErrs["minLength"] = null;
-                        setErrors(tempErrs);
+                        setErrors(tempErrs); 
                     }
                     break;
                 case "maxLength":
@@ -63,6 +72,28 @@ const useValid = (value, validations) => {
                         setErrors(tempErrs);
                     }
                     break;
+                case "mustBeCyrillic":
+                    if(tempErrs["isEmpty"] === null){
+
+                        let cyrillicRegex =
+                            /^[-а-яА-ЯёЁ\s]+$/;
+                        if (!value.match(cyrillicRegex)) {
+                            
+                            setIsCyrillic(false);
+                            tempErrs["mustBeCyrillic"] = `Поле должно содержать только символы кириллицы, пробелы и дефисы`;
+                            setErrors(tempErrs);
+                        } else {
+                            setIsCyrillic(true);
+                            tempErrs["mustBeCyrillic"] = null;
+                            setErrors(tempErrs);
+                        }
+                    }
+                    else{
+                        setIsCyrillic(true);
+                        tempErrs["mustBeCyrillic"] = null;
+                        setErrors(tempErrs);
+                    }
+                    break;
                 case "minAge":
                     const msInYear = 31536000000;
                     const now = new Date();
@@ -80,7 +111,7 @@ const useValid = (value, validations) => {
                     }
                     break;
                 case "passEqual":
-                    console.log(`passRep = ${value},  pass = ${validations[validation]}`)
+                    //console.log(`passRep = ${value},  pass = ${validations[validation]}`)
                     if (value === validations[validation]) {
                         setPassEqualError(false);
                         tempErrs["passEqual"] = null;
@@ -107,10 +138,11 @@ const useValid = (value, validations) => {
                 minLengthError ||
                 birthError ||
                 mailError ||
-                passEqualError
+                passEqualError ||
+                isCyrillic
             )
         );
-    }, [isEmpty, maxLengthError, minLengthError, birthError, mailError, passEqualError]);
+    }, [isEmpty, maxLengthError, minLengthError, birthError, mailError, passEqualError, isCyrillic]);
 
     return {
         isEmpty,
@@ -121,6 +153,7 @@ const useValid = (value, validations) => {
         passEqualError,
         errors,
         correct,
+        isCyrillic
     };
 };
 

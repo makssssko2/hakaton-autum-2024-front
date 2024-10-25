@@ -9,11 +9,11 @@ import {useNavigate} from "react-router-dom";
 const RegistrationPage = () => {
     const [serverResponse,setServerResponse] = useState(null);
     const navigate = useNavigate();
-    const fio = useInput('',{isEmpty: true,maxLength: 50});
+    const fio = useInput('',{isEmpty: true,maxLength: 50, mustBeCyrillic: true});
     const login = useInput('',{isEmpty: true,maxLength: 20});
 
-    const password = useInput('',{isEmpty: true,maxLength: 20});
-    const repPassword = useInput('',{isEmpty: true,maxLength: 20, passEqual: password.value});
+    const password = useInput('',{isEmpty: true, minLength: 8, maxLength: 20});
+    const repPassword = useInput('',{isEmpty: true, maxLength: 20, passEqual: password.value});
 
     useEffect(() => {
         if(AuthStore.isAuth) {
