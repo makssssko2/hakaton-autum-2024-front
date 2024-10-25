@@ -17,7 +17,7 @@ const RegistrationPage = () => {
 
     useEffect(() => {
         if(AuthStore.isAuth) {
-            navigate('/')
+            navigate('/desk')
         }
     },[AuthStore.isAuth])
 

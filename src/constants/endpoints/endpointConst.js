@@ -1,8 +1,8 @@
-const API_URL = "http://localhost:5002/api";
-const AUTH_REFRESH = "/refresh";
-const AUTH_LOGIN = "/login";
-const AUTH_REG = "/registration";
-const AUTH_LOGOUT = "/logout";
+const API_URL = "https://uwu-devcrew.ru/api";
+const AUTH_REFRESH = "/authentication/refresh";
+const AUTH_LOGIN = "/authentication/authorization";
+const AUTH_REG = "/authentication/registration";
+const AUTH_LOGOUT = "/authentication/logout";
 
 
 export {

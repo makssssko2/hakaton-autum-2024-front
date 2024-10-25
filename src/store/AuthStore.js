@@ -15,10 +15,12 @@ class AuthStore {
         let errorMessage;
         try {
             const response = await api.post(AUTH_LOGIN, {login, password});
-            localStorage.setItem('token',(response).data.accessToken);
+            localStorage.setItem('token',response.data.token);
+            console.log(response);
             runInAction(() => {
-                this.IsAuth = true;
+                this.isAuth = true;
             });
+            console.log()
         } catch(err) {
             errorMessage = err.response?.data?.message;
         } finally {
@@ -45,7 +47,8 @@ class AuthStore {
         let errorMessage;
         try {
             const response = await api.post(AUTH_REG,{fio, login, password});
-            localStorage.setItem('token',(response).data.accessToken);
+            console.log(response)
+            localStorage.setItem('token',response.data.token);
             runInAction(() => {
                 this.isAuth = true;
             })
@@ -62,11 +65,10 @@ class AuthStore {
     checkAuth = async () => {
         console.log('Сработал CheckAuth')
         try {
-            const response = await api.post(
-                API_URL + AUTH_REFRESH,
-                undefined,{withCredentials: true}
+            const response = await api.get(
+                API_URL + AUTH_REFRESH, {withCredentials: true}
             );
-            localStorage.setItem('token',(response).data.accessToken);
+            localStorage.setItem('token',response.data.token);
             runInAction(() => {
                 this.isAuth = true;
             })
