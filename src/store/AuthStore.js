@@ -41,10 +41,10 @@ class AuthStore {
         }
     }
 
-    registration = async ({email,password,birthday,name}) => {
+    registration = async ({fio, email,password}) => {
         let errorMessage;
         try {
-            const response = await api.post(AUTH_REG,{email,password,birthday,name});
+            const response = await api.post(AUTH_REG,{fio, email, password});
             localStorage.setItem('token',(response).data.accessToken);
             runInAction(() => {
                 this.isAuth = true;
