@@ -19,7 +19,6 @@ const LoginPage = () => {
     },[AuthStore.isAuth])
 
     const submitHandler = async (e,inputs) => {
-        console.log(e);
         e.preventDefault();
         let correctFlag = true;
         for(let input in inputs) {
@@ -28,7 +27,7 @@ const LoginPage = () => {
         }
         if(!correctFlag) return;
         LoaderStore.showLocalLoader();
-        const res = await AuthStore.login(inputs.email.value, inputs.password.value)
+        const res = await AuthStore.login({email: inputs.email.value, password: inputs.password.value});
         setServerResponse(res);
         LoaderStore.hideLocalLoader();
     }
