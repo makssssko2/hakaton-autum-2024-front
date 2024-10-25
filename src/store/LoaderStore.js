@@ -10,7 +10,6 @@ class LoaderStore {
     }
 
     showLocalLoader() {
-        console.log(1111111111111)
         runInAction(() => {
             this.localLoaderLoading = true;
         })

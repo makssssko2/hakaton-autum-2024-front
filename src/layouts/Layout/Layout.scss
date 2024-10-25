@@ -1,0 +1,12 @@
+.Layout {
+  margin: 0 auto;
+  min-height: 100vh;
+  border-left: 2px solid black;
+  border-right: 2px solid black;
+  &_wide {
+    max-width: 1120px;
+  }
+  &_thin {
+    max-width: 500px;
+  }
+}
