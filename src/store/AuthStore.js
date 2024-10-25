@@ -37,7 +37,7 @@ class AuthStore {
         } catch(err) {
             console.log(err.response?.data?.message);
         } finally {
-            console.log('Auth Loading - false')
+
         }
     }
 
@@ -54,7 +54,7 @@ class AuthStore {
             console.log(err.response?.data?.message);
             errorMessage = err.response?.data?.message;
         } finally {
-            console.log('Auth Loading - false')
+
         }
         return errorMessage || null;
     };
@@ -73,7 +73,6 @@ class AuthStore {
         } catch(err) {
             console.log(err.response?.data?.message);
         } finally {
-            console.log('Auth Loading - false')
         }
     }
 }

@@ -1,8 +1,9 @@
+import './Input.scss';
 import { useState } from "react";
-import closeEye from "../../assets/icons/Auth/CloseEye.jsx";
-import openEye from "../../assets/icons/Auth/OpenEye.jsx";
+import CloseEye from "../../assets/icons/Auth/CloseEye.jsx";
+import OpenEye from "../../assets/icons/Auth/OpenEye.jsx";
 
-export default function SmartInput({ children, ...props}) {
+const Input = ({ children, ...props}) => {
     const {
         className,
         type,
@@ -34,31 +35,30 @@ export default function SmartInput({ children, ...props}) {
                 placeholder={children}
             />
             {type === "password" ? (
-                showPass ? (
+                showPass ?
                     <button
                         onClick={() => setShowPass(!showPass)}
                         type="button"
                         className="eye"
                     >
-                        {openEye}
+                        <OpenEye />
                     </button>
-                ) : (
+                 :
                     <button
                         onClick={() => setShowPass(!showPass)}
                         type="button"
                         className="eye"
                     >
-                        {closeEye}
+                        <CloseEye />
                     </button>
-                )
             ) : null}
-            <div className="auth-form__errors">
+            <div className="AuthForm__errors">
                 {input.isDirty
                     ? Object.values(input.errors)
                         .filter((err) => err)
                         .map((err, index) => {
                             return (
-                                <p className="auth-form__error" key={index}>
+                                <p className="AuthForm__error" key={index}>
                                     {err}
                                 </p>
                             );
@@ -68,3 +68,4 @@ export default function SmartInput({ children, ...props}) {
         </div>
     );
 }
+export default Input;

@@ -1,7 +1,6 @@
 import Spinner from "../../../assets/icons/Spinner/Spinner.jsx";
 import styles from '../Loader.module.scss';
 const LocalLoader = () => {
-    console.log(styles);
     return (
         <div className={styles.loader}>
             <div className={`${styles['loader__background']} ${styles['loader__background_local']}`}>

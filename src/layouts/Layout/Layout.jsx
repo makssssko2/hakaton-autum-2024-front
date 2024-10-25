@@ -1,6 +1,5 @@
 import './Layout.scss';
 const Layout = ({children,...props}) => {
-    console.log(1111111);
     const {
         type,
         className,
