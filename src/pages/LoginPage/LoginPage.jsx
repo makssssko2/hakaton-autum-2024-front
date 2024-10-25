@@ -9,7 +9,7 @@ import {useNavigate} from "react-router-dom";
 const LoginPage = () => {
     const [serverResponse,setServerResponse] = useState(null);
     const navigate = useNavigate();
-    const email = useInput('',{isEmpty: true,maxLength: 30,mailError: true});
+    const login = useInput('',{isEmpty: true,maxLength: 30});
     const password = useInput('',{isEmpty: true,maxLength: 40});
 
     useEffect(() => {
@@ -27,7 +27,7 @@ const LoginPage = () => {
         }
         if(!correctFlag) return;
         LoaderStore.showLocalLoader();
-        const res = await AuthStore.login({email: inputs.email.value, password: inputs.password.value});
+        const res = await AuthStore.login({login: inputs.login.value, password: inputs.password.value});
         setServerResponse(res);
         LoaderStore.hideLocalLoader();
     }
@@ -36,10 +36,10 @@ const LoginPage = () => {
             <AuthForm
                 title={'Авторизация'}
                 submitText={'Войти'}
-                onSubmit={(e) => submitHandler(e,{email,password})}
+                onSubmit={(e) => submitHandler(e,{login,password})}
                 serverResponse={serverResponse}
             >
-                <Input className="AuthForm__input" name="email" type='email' input={email}>Email</Input>
+                <Input className="AuthForm__input" name="login" type='text' input={login}>Логин</Input>
                 <Input className="AuthForm__input" name="pass" type='password' input={password}>Пароль</Input>
             </AuthForm>
         </Layout>

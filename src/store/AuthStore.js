@@ -11,10 +11,10 @@ class AuthStore {
         makeAutoObservable(this, {}, { autoBind: true });
     }
 
-    login = async ({email,password}) => {
+    login = async ({login,password}) => {
         let errorMessage;
         try {
-            const response = await api.post(AUTH_LOGIN, {email,password});
+            const response = await api.post(AUTH_LOGIN, {login, password});
             localStorage.setItem('token',(response).data.accessToken);
             runInAction(() => {
                 this.IsAuth = true;
@@ -22,7 +22,7 @@ class AuthStore {
         } catch(err) {
             errorMessage = err.response?.data?.message;
         } finally {
-            console.log(5)
+
         }
         return errorMessage || null;
     }
@@ -41,10 +41,10 @@ class AuthStore {
         }
     }
 
-    registration = async ({fio, email,password}) => {
+    registration = async ({fio, login,password}) => {
         let errorMessage;
         try {
-            const response = await api.post(AUTH_REG,{fio, email, password});
+            const response = await api.post(AUTH_REG,{fio, login, password});
             localStorage.setItem('token',(response).data.accessToken);
             runInAction(() => {
                 this.isAuth = true;
