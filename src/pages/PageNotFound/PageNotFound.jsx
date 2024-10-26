@@ -1,6 +1,6 @@
 
 import Layout from "../../layouts/Layout/Layout";
-import ivanNotFound from '/src/assets/images/ivan404.jpg';
+import ivanNotFound from '/src/assets/images/ivanNotFound.png';
 import './PageNotFound.scss';
 const PageNotFound = () =>{
 
