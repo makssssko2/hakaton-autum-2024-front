@@ -1,5 +1,6 @@
+import { observer } from "mobx-react-lite";
 import CanbanTask from "./CanbanTask.jsx";
-
+import TaskStore from "../../../store/TaskStore.js";
 const CanbanColumn = ({...props}) => {
     const {
         tasks,
@@ -12,7 +13,9 @@ const CanbanColumn = ({...props}) => {
                 <button className="Canban-column__add">+</button>
             </div>
             <div className="Canban-column__content">
-                {tasks.map((value,index) =>
+                {tasks
+                .filter((value) => value.name.toLowerCase().includes(TaskStore.searchValue.toLowerCase()))
+                .map((value,index) =>
                     <CanbanTask
                         name={value.name}
                         author={value.author}
@@ -26,4 +29,4 @@ const CanbanColumn = ({...props}) => {
     )
 }
 
-export default CanbanColumn;
+export default observer(CanbanColumn);
