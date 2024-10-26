@@ -1,6 +1,8 @@
 import {observer} from "mobx-react-lite";
 import { useState } from "react";
 import './SearchField.scss';
+import axios from 'axios';
+import { API_URL } from "../../constants/endpoints/endpointConst.js";
 import Filter from '../../assets/icons/Header/Filter.jsx';
 import ProfileIcon from '../../assets/icons/Header/ProfileIcon.jsx';
 import SearchInput from '../SearchInput/SearchInput.jsx';
@@ -21,9 +23,30 @@ const SearchField = () => {
         setDropDownActive(prevState => !prevState);
     }
 
+    const getFile = async () => {
+        const url = API_URL + '/export-file';
+
+        try {
+            const response = await axios.get(url, {
+              responseType: 'blob', // Указываем, что ожидаем файл в формате blob
+            });
+            const blob = response.data;
+            const fileUrl = window.URL.createObjectURL(blob);
+            window.open(fileUrl, '_blank');
+            setTimeout(() => window.URL.revokeObjectURL(fileUrl), 100);
+        }
+        catch (error) {
+            console.error('Хуйня:', error);
+          }
+    }
+        
+
     return(
         <div className='searchBlock'>
-            <UploadIcon/>
+            <button onClick={getFile}>
+                <UploadIcon/>
+            </button>
+            
             <button onClick={toggleDropDown}>
                 <Filter/>
             </button>

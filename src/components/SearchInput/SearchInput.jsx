@@ -4,7 +4,6 @@ import SearchIcon from '../../assets/icons/Header/SearchIcon';
 import TaskStore from '../../store/TaskStore';
 const SearchInput = () => {
     const search = (e) => {
-        console.log(e);
         TaskStore.setSearchValue(e.target.value);
     }
     return(

@@ -15,6 +15,10 @@ const CanbanColumn = ({...props}) => {
             <div className="Canban-column__content">
                 {tasks
                 .filter((value) => value.name.toLowerCase().includes(TaskStore.searchValue.toLowerCase()))
+                //.filter((value) => value.author.toLowerCase().includes(TaskStore.filters.filter2.toLowerCase()))
+                /*const filteredData = data.filter(item => 
+  item.date >= startDate && item.date <= endDate
+); */
                 .map((value,index) =>
                     <CanbanTask
                         name={value.name}
