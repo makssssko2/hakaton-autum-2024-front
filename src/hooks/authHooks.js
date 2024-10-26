@@ -9,7 +9,7 @@ const useValid = (value, validations) => {
     const [passEqualError,setPassEqualError] = useState(false);
     const [errors, setErrors] = useState({});
     const [correct, setCorrect] = useState(false);
-    const [isCyrillic, setIsCyrillic] = useState(false);
+    const [cyrillicError, setCyrillicError] = useState(false);
     useEffect(() => {
         const tempErrs = errors;
         for (const validation in validations) {
@@ -72,25 +72,16 @@ const useValid = (value, validations) => {
                         setErrors(tempErrs);
                     }
                     break;
-                case "mustBeCyrillic":
-                    if(tempErrs["isEmpty"] === null){
-
-                        let cyrillicRegex =
-                            /^[-а-яА-ЯёЁ\s]+$/;
-                        if (!value.match(cyrillicRegex)) {
-                            
-                            setIsCyrillic(false);
-                            tempErrs["mustBeCyrillic"] = `Поле должно содержать только символы кириллицы, пробелы и дефисы`;
-                            setErrors(tempErrs);
-                        } else {
-                            setIsCyrillic(true);
-                            tempErrs["mustBeCyrillic"] = null;
-                            setErrors(tempErrs);
-                        }
-                    }
-                    else{
-                        setIsCyrillic(true);
-                        tempErrs["mustBeCyrillic"] = null;
+                case "cyrillicError":
+                    let cyrillicRegex =
+                        /^[-а-яА-ЯёЁ\s]+$/;
+                    if (value.match(cyrillicRegex)) {
+                        setCyrillicError(false);
+                        tempErrs["cyrillicError"] = null;
+                        setErrors(tempErrs);
+                    } else {
+                        setCyrillicError(true);
+                        tempErrs["cyrillicError"] = `Поле должно содержать только символы кириллицы, пробелы и дефисы`;
                         setErrors(tempErrs);
                     }
                     break;
@@ -139,10 +130,10 @@ const useValid = (value, validations) => {
                 birthError ||
                 mailError ||
                 passEqualError ||
-                isCyrillic
+                cyrillicError
             )
         );
-    }, [isEmpty, maxLengthError, minLengthError, birthError, mailError, passEqualError, isCyrillic]);
+    }, [isEmpty, maxLengthError, minLengthError, birthError, mailError, passEqualError, cyrillicError]);
 
     return {
         isEmpty,
@@ -153,7 +144,7 @@ const useValid = (value, validations) => {
         passEqualError,
         errors,
         correct,
-        isCyrillic
+        cyrillicError
     };
 };
 

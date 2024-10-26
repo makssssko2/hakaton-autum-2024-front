@@ -9,7 +9,7 @@ import {useNavigate, Link} from "react-router-dom";
 const RegistrationPage = () => {
     const [serverResponse,setServerResponse] = useState(null);
     const navigate = useNavigate();
-    const fio = useInput('',{isEmpty: true,maxLength: 50, mustBeCyrillic: true});
+    const fio = useInput('',{isEmpty: true,maxLength: 50, cyrillicError: true});
     const login = useInput('',{isEmpty: true,maxLength: 20});
 
     const password = useInput('',{isEmpty: true, minLength: 8, maxLength: 20});
@@ -29,6 +29,7 @@ const RegistrationPage = () => {
             correctFlag = inputs[input].correct ? correctFlag && true : false;
         }
         if(!correctFlag) return;
+        console.log(111111111111111)
         LoaderStore.showLocalLoader();
         const res = await AuthStore.registration({fio: inputs.fio.value, login: inputs.login.value, password: inputs.password.value})
         setServerResponse(res);
@@ -46,7 +47,7 @@ const RegistrationPage = () => {
             <AuthForm
                 title={'Регистрация'}
                 submitText={'Зарегистрироваться'}
-                onSubmit={(e) => submitHandler(e,{fio, login, password, repPassword})}
+                onSubmit={(e) => submitHandler(e,{fio, login, password})}
                 serverResponse={serverResponse}
                 footer={footerText}
             >   
