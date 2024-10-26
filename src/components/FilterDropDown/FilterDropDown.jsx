@@ -9,7 +9,7 @@ const FilterDropDown = ({...props}) => {
         <div className={isActive ? 'FilterDropDownDiv' : 'FilterDropDownDiv hidden'}>
             <div className='FilterDropDownDiv__list'>
                 <p>Выберите период:</p>
-                <DatePickerComponent/>
+                <DatePickerComponent />
                 <p>Выберите ответственного:</p>
                 <Input/>
             </div>
