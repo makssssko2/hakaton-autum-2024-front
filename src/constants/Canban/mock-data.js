@@ -40,4 +40,11 @@ const tasksFinish = [{
 }
 ];
 
-export {tasksBack,tasksFinish,tasksWork}
+const taskData = {
+    description: 'Изучить технические характеристики автомата АК-47, выучить основные составляющие.',
+    author: 'Багиров Т.С.',
+    date: '03.11.2024',
+    name: 'Выучить устройство АК-47'
+}
+
+export {tasksBack,tasksFinish,tasksWork,taskData}
