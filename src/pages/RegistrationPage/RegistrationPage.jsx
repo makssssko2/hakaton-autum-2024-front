@@ -5,7 +5,7 @@ import AuthForm from "../../components/AuthForm/AuthForm.jsx";
 import AuthStore from "../../store/AuthStore.js";
 import {useInput} from "../../hooks/authHooks.js";
 import LoaderStore from "../../store/LoaderStore.js";
-import {useNavigate} from "react-router-dom";
+import {useNavigate, Link} from "react-router-dom";
 const RegistrationPage = () => {
     const [serverResponse,setServerResponse] = useState(null);
     const navigate = useNavigate();
@@ -34,6 +34,13 @@ const RegistrationPage = () => {
         setServerResponse(res);
         LoaderStore.hideLocalLoader();
     }
+
+    const footerText = (
+        <p className="AuthForm__footer">Уже есть аккаунт?
+            <Link to="/login" className="AuthForm__footer_link"> Войти</Link>
+        </p>
+    )
+
     return (
         <Layout type={'thin'}>
             <AuthForm
@@ -41,6 +48,7 @@ const RegistrationPage = () => {
                 submitText={'Зарегистрироваться'}
                 onSubmit={(e) => submitHandler(e,{fio, login, password, repPassword})}
                 serverResponse={serverResponse}
+                footer={footerText}
             >   
                 <Input className="AuthForm__input" name="fio" type='text' input={fio}>ФИО</Input>
                 <Input className="AuthForm__input" name="login" type='text' input={login}>Логин</Input>

@@ -4,7 +4,8 @@ const AuthForm = ({children,...props}) => {
         title,
         submitText,
         onSubmit,
-        serverResponse
+        serverResponse,
+        footer
     } = props;
     return (
         <form className="AuthForm" onSubmit={onSubmit} method="POST">
@@ -15,8 +16,9 @@ const AuthForm = ({children,...props}) => {
             <div className="AuthForm__body">
                 {children}
             </div>
-            <div className="AuthForm__buttons">
+            <div className="AuthForm__buttonBlock">
                 <button className={"AuthForm__button"} type={'submit'}>{submitText}</button>
+                {footer}
             </div>
         </form>
     )
