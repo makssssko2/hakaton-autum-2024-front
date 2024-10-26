@@ -9,7 +9,7 @@ const Canban = ({...props}) => {
                 tasks={tasksBack}
             />
             <CanbanColumn
-                name={'В процеесе'}
+                name={'В процессе'}
                 tasks={tasksWork}
             />
             <CanbanColumn

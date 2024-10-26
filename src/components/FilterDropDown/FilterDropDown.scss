@@ -1,0 +1,30 @@
+.FilterDropDownDiv{
+    opacity: 1;
+    transition: opacity .5s ease;
+    position: absolute;
+    background-color: white;
+    width: 260px;
+    
+    padding: 15px;
+    border-radius: 12px;
+    border: 1px solid black;
+    left: -70px;
+    top: 55px;
+    z-index: 2;
+    &__list{
+        p{
+            align-self: flex-start;
+            font-size: 17px;
+        }
+        display: flex;
+        row-gap: 10px;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column; 
+    }
+}
+.hidden{
+    opacity: 0;
+    pointer-events: none;
+
+}
