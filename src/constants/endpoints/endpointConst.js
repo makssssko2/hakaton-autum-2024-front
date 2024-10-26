@@ -1,5 +1,5 @@
 const API_URL = "https://uwu-devcrew.ru/api";
-const AUTH_REFRESH = "/authentication/refresh";
+const AUTH_REFRESH = "/authentication/whoami";
 const AUTH_LOGIN = "/authentication/authorization";
 const AUTH_REG = "/authentication/registration";
 const AUTH_LOGOUT = "/authentication/logout";

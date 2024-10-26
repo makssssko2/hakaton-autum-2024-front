@@ -9,11 +9,11 @@ import PageNotFound from "../../pages/PageNotFound/PageNotFound.jsx";
 const AppRouting = () => {
     return (
         <Routes>
-            <Route path="/" element={<DeskPage />} />
+            <Route path="/" element={<MainPage />} />
             <Route path="/" element={<PrivateRoute />}>
                 <Route path="/desk" element={<DeskPage />} />
             </Route>
-            <Route path="/login" element={<DeskPage />} />
+            <Route path="/login" element={<LoginPage />} />
             <Route path="/registration" element={<RegistrationPage />} />
             <Route path="/*" element={<PageNotFound />} />
         </Routes>

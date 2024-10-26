@@ -35,7 +35,8 @@ class AuthStore {
             localStorage.removeItem('token');
             runInAction(() => {
                 this.isAuth = false;
-            })
+            });
+            console.log(this.isAuth);
         } catch(err) {
             console.log(err.response?.data?.message);
         } finally {
