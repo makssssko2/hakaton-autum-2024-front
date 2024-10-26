@@ -4,6 +4,7 @@ import DeskPage from "../../pages/DeskPage/DeskPage.jsx";
 import LoginPage from "../../pages/LoginPage/LoginPage.jsx";
 import RegistrationPage from "../../pages/RegistrationPage/RegistrationPage.jsx";
 import PrivateRoute from "../private/privateRoute.jsx";
+import PageNotFound from "../../pages/PageNotFound/PageNotFound.jsx";
 
 const AppRouting = () => {
     return (
@@ -14,6 +15,7 @@ const AppRouting = () => {
             </Route>
             <Route path="/login" element={<LoginPage />} />
             <Route path="/registration" element={<RegistrationPage />} />
+            <Route path="/*" element={<PageNotFound />} />
         </Routes>
     )
 }

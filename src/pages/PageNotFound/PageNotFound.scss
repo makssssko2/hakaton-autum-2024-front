@@ -1,0 +1,51 @@
+.PageNotFound {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  &__content {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    row-gap: 20px;
+    align-items: center;
+  }
+  &__title {
+    font-size: 100px;
+    font-weight: bold;
+    span {
+      font-weight: normal;
+      font-size: 70px;
+    }
+  }
+
+  @keyframes notfound {
+    0% {
+      transform: translateY(0);
+      transform: rotate(0);
+    }
+
+    25% {
+      transform: translateY(-10%);
+    }
+
+    50% {
+      transform: translateY(0);
+    }
+
+    75% {
+      transform: translateY(10%);
+    }
+
+    100% {
+      transform: translateY(0) rotate(360deg);
+    }
+  }
+
+  &__image {
+    width: 500px;
+    height: auto;
+    animation: notfound infinite 4s linear;
+  }
+
+}
