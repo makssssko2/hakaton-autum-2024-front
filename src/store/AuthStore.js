@@ -63,7 +63,6 @@ class AuthStore {
     };
 
     checkAuth = async () => {
-        console.log('Сработал CheckAuth')
         try {
             const response = await api.get(
                 API_URL + AUTH_REFRESH, {withCredentials: true}
