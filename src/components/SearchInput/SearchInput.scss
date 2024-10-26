@@ -1,0 +1,16 @@
+.SearchInput{
+    display: flex;
+    background-color: white;
+    
+    border-radius: 15px;
+    width: 315px;
+    height: 40px;
+    
+    div{
+        margin-left: 5px;
+        
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+    }
+}

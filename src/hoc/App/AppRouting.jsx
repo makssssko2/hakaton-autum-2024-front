@@ -13,7 +13,7 @@ const AppRouting = () => {
             <Route path="/" element={<PrivateRoute />}>
                 <Route path="/desk" element={<DeskPage />} />
             </Route>
-            <Route path="/login" element={<LoginPage />} />
+            <Route path="/login" element={<DeskPage />} />
             <Route path="/registration" element={<RegistrationPage />} />
             <Route path="/*" element={<PageNotFound />} />
         </Routes>
