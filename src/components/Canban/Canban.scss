@@ -119,6 +119,5 @@
 .Canban {
   display: flex;
   justify-content: space-between;
-  flex-grow: 1;
-  height: 640px;
+  height: calc(100vh - 200px);
 }
