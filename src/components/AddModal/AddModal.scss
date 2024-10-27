@@ -1,0 +1,21 @@
+.AddModal {
+  padding: 40px 28px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  .TaskModal {
+    &__head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      column-gap: 10px;
+    }
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+    row-gap: 30px;
+  }
+}

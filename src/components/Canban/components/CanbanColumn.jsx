@@ -2,17 +2,23 @@ import { observer } from "mobx-react-lite";
 import CanbanTask from "./CanbanTask.jsx";
 import {valueFilter,dateFilter} from "../../../utils/Filters/index.js";
 import TaskStore from "../../../store/TaskStore.js";
+import ModalStore from "../../../store/ModalStore.js";
 const CanbanColumn = ({...props}) => {
     const {
         tasks,
         name,
         addable
     } = props;
+
+    const addHandler = () => {
+        ModalStore.showModal('addTask');
+    }
+
     return (
         <div className="Canban__column Canban-column">
             <div className="Canban-column__head">
                 <h2 className="Canban-column__title">{name}</h2>
-                {addable && <button className="Canban-column__add">+</button>}
+                {addable && <button className="Canban-column__add" onClick={addHandler}>+</button>}
             </div>
             <div className="Canban-column__content">
                 {tasks

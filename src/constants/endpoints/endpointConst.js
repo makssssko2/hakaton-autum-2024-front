@@ -6,6 +6,8 @@ const AUTH_LOGOUT = "/authentication/logout";
 
 const CANBAN_GET = '/kanban/';
 
+const CANBAN_CREATE = '/kanban/create';
+
 
 export {
     API_URL,
@@ -13,5 +15,6 @@ export {
     AUTH_REG,
     AUTH_LOGOUT,
     AUTH_LOGIN,
-    CANBAN_GET
+    CANBAN_GET,
+    CANBAN_CREATE
 }

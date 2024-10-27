@@ -1,6 +1,6 @@
 import { makeAutoObservable, runInAction } from "mobx";
 import api from "../services/axios/api.js";
-import {CANBAN_GET} from "../constants/endpoints/endpointConst.js";
+import {CANBAN_GET, CANBAN_CREATE} from "../constants/endpoints/endpointConst.js";
 
 class TaskStore {
     filters;
@@ -41,6 +41,11 @@ class TaskStore {
         runInAction(() => {
             this.currentTask = response.data;
         })
+    }
+
+    async createTask({name,description}) {
+        const res = await api.post(CANBAN_CREATE,{name,description});
+        console.log(res)
     }
 
 
