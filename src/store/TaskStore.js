@@ -8,11 +8,13 @@ class TaskStore {
     canbanObj;
     currentTask;
     taskDragging;
+    changingValues;
     constructor() {
         this.filters = {};
         this.searchValue = '';
         this.canbanObj = {};
         this.currentTask = {};
+        this.changingValues = {};
         makeAutoObservable(this, {}, { autoBind: true });
     }
 
@@ -41,6 +43,10 @@ class TaskStore {
         runInAction(() => {
             this.currentTask = response.data;
         })
+    }
+    
+    async sumbitChanges(){
+        await api.put('',this.changingValues);
     }
 
 
