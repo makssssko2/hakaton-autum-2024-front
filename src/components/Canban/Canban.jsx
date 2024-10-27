@@ -3,16 +3,20 @@ import CanbanColumn from "./components/CanbanColumn.jsx";
 import {useEffect} from "react";
 import LoaderStore from "../../store/LoaderStore.js";
 import TaskStore from "../../store/TaskStore.js";
+import ModalStore from "../../store/ModalStore.js";
 
 const Canban = () => {
     useEffect(() => {
+        if(ModalStore.isOpen) return;
+        console.log(222222)
         async function fetch() {
             LoaderStore.showLocalLoader();
             await TaskStore.getCanban();
             LoaderStore.hideLocalLoader();
         }
         fetch();
-    }, [])
+    }, [ModalStore.isOpen])
+
 
     return (
         <div className="Canban">

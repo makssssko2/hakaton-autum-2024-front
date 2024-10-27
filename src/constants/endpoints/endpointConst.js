@@ -7,6 +7,10 @@ const AUTH_LOGOUT = "/authentication/logout";
 const CANBAN_GET = '/kanban/';
 const PROFILE_GET = '/profile/';
 
+const CANBAN_CREATE = '/kanban/create';
+
+const CANBAN_CHANGE_STATEMENT = '/kanban/change-statement'
+
 
 export {
     API_URL,
@@ -16,4 +20,5 @@ export {
     AUTH_LOGIN,
     CANBAN_GET,
     PROFILE_GET
-}
+    CANBAN_CREATE,
+    CANBAN_CHANGE_STATEMENT
