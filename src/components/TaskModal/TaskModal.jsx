@@ -20,7 +20,7 @@ const TaskModal = () => {
             </div>
             <div className="TaskModal__body">
                 <p className="TaskModal__field">{taskData.description}</p>
-                <p className="TaskModal__field">{taskData.author}</p>
+                <p className="TaskModal__field">{taskData.employee}</p>
             </div>
             <div className="TaskModal__comments">
 

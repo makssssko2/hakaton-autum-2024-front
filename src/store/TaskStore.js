@@ -19,8 +19,9 @@ class TaskStore {
 
     setFilters(value){
         runInAction(() => {
-            this.filters = value;
+            this.filters = {...this.filters,...value};
         });
+        console.log(JSON.stringify(this.filters));
     }
 
 
