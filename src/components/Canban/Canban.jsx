@@ -17,6 +17,7 @@ const Canban = () => {
         fetch();
     }, [ModalStore.isOpen])
 
+
     return (
         <div className="Canban">
             {Object.keys(TaskStore.canbanObj).length && TaskStore.canbanObj.map(

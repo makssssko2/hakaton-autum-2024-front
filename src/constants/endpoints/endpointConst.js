@@ -8,6 +8,8 @@ const CANBAN_GET = '/kanban/';
 
 const CANBAN_CREATE = '/kanban/create';
 
+const CANBAN_CHANGE_STATEMENT = '/kanban/change-statement'
+
 
 export {
     API_URL,
@@ -16,5 +18,6 @@ export {
     AUTH_LOGOUT,
     AUTH_LOGIN,
     CANBAN_GET,
-    CANBAN_CREATE
+    CANBAN_CREATE,
+    CANBAN_CHANGE_STATEMENT
 }

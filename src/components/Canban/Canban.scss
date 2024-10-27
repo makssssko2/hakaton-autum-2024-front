@@ -12,7 +12,6 @@
   @media (max-width: 1100px) {
     flex-shrink: 0;
     flex-basis: 315px;
-    
   }
 
 
@@ -68,6 +67,11 @@
         transform: translateY(-5px);
       }
     }
+  }
+  &_drag {
+    position: fixed;
+    z-index: 2000;
+    opacity: 0.5;
   }
 
   &__priority {

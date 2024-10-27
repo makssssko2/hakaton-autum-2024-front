@@ -1,11 +1,11 @@
 import {observer} from "mobx-react-lite";
 import '../Canban.scss';
 import ModalStore from "../../../store/ModalStore.js";
-import {useState} from "react";
 import LoaderStore from "../../../store/LoaderStore.js";
 import TaskStore from "../../../store/TaskStore.js";
+import taskStore from "../../../store/TaskStore.js";
+import {runInAction} from "mobx";
 const CanbanTask = ({...props}) => {
-    const [drag,setDrag] = useState(false);
     const {
         name,
         id,
@@ -13,7 +13,19 @@ const CanbanTask = ({...props}) => {
         employee
     } = props;
 
+    const dragHandler = () => {
+        runInAction(() => {
+            TaskStore.taskDragging = id;
+        })
+    }
+
+    const dropHandler = () => {
+        TaskStore.stopDrag();
+    }
+
+
     const clickHandler = async () => {
+        console.log(111111);
         LoaderStore.showLocalLoader();
         await TaskStore.getTask(id);
         LoaderStore.hideLocalLoader();
@@ -21,7 +33,11 @@ const CanbanTask = ({...props}) => {
     }
 
     return (
-        <div className={`Canban__task Canban-task`}>
+        <div style={TaskStore.taskDragging === id ? {top: taskStore.dragTaskY, left: taskStore.dragTaskX} : null}
+             className={`Canban__task Canban-task ${TaskStore.taskDragging === id ? 'Canban-task_drag' : null}`}
+             onMouseDown={dragHandler}
+             onMouseUp={dropHandler}
+        >
             <h3 className="Canban-task__title">{name}</h3>
             <div className="Canban-task__footer">
                 <button className="Canban-task__menu" onClick={clickHandler}>
