@@ -8,6 +8,7 @@ class TaskStore {
     canbanObj;
     currentTask;
     taskDragging;
+
     dragTaskX;
     dragTaskY;
     constructor() {
@@ -57,6 +58,10 @@ class TaskStore {
         runInAction(() => {
             this.currentTask = response.data;
         })
+    }
+    
+    async sumbitChanges(){
+        await api.put('',this.changingValues);
     }
 
     async createTask({name,description}) {
