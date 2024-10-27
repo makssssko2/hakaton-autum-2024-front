@@ -25,9 +25,19 @@
     }
   }
 
+  &__headWithPencil{
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    min-width: 78%;
+    
+  }
+
   &__title {
-    font-size: 40px;
-    font-weight: 800;
+    text-wrap: wrap;
+    word-break: break-all;
+    
+    
     @media (max-width: 800px) {
       font-size: 32px;
     }

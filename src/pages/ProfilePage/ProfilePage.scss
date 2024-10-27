@@ -1,0 +1,61 @@
+.ProfilePage{
+    margin: 20px auto;
+    h1{
+        color: #9A8BAB;
+        font-size: 45px;
+        font-weight: bold;
+    }
+    .profile-div{
+        width:auto;
+        height: 600px;
+        border-radius: 15px;
+        padding: 40px;
+        background-color: white;
+        .firstline{
+            display: flex;
+            
+            .profile-pic{
+                width:300px;
+                height: 300px;
+                border: 3px solid black;
+                border-radius: 10px;
+                padding: 3px;
+                margin-right: 20px;
+                color: rgb(100, 100, 100, 0.6);
+                h6{
+                    margin-top: 10px;
+                }
+            }
+            .data-grid{
+                display: flex;
+                flex-direction: column;
+                row-gap: 20px;
+                justify-content: center;
+                .data{
+                    display:flex;
+                    justify-content: space-around;
+                    align-items: center;
+                    row-gap: 10px;
+                    
+                    h3{
+                        font-size: 30px;
+                        margin-right: 10px;
+                    }
+                    .fio{
+                        background-color: #E4E4E4;
+                        height: 40px;
+                        width: 400px;
+                        border-radius: 10px;
+                        display: flex;
+                        align-items: center;
+                        padding: 5px 10px;
+                        font-size: 22px;
+                    }
+                }
+            }
+            
+        }
+        
+    }
+    
+}

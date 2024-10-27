@@ -1,0 +1,56 @@
+.ProfileDropDownDiv{
+    opacity: 1;
+    transition: opacity .5s ease;
+    position: absolute;
+    background-color: white;
+    width: 650px;
+    padding: 16px;
+    border-radius: 12px;
+    border: 1px solid black;
+    left: -170px;
+    top: 55px;
+    z-index: 3;
+    display: flex;
+    justify-content: space-around;
+    
+        h3{
+            font-size: 24px;
+        }
+        
+        .elements {
+            width: 65%;
+            background-color: #E4E4E4;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            padding: 30px 20px;
+            margin: 0 auto;
+
+            .flex-elems{
+                display: flex;
+                justify-content: space-between;
+            }
+        }   
+        
+        
+        
+        .profile-pic{
+            width:175px;
+            height: 175px;
+            border: 3px solid black;
+            border-radius: 10px;
+            padding: 3px;
+            
+            color: rgb(100, 100, 100, 0.6);
+            h6{
+                margin-top: 4px;
+            }
+        }
+    
+}
+.hidden{
+    opacity: 0;
+    pointer-events: none;
+
+}

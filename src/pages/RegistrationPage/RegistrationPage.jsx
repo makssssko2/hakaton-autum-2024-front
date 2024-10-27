@@ -29,7 +29,6 @@ const RegistrationPage = () => {
             correctFlag = inputs[input].correct ? correctFlag && true : false;
         }
         if(!correctFlag) return;
-        console.log(111111111111111)
         LoaderStore.showLocalLoader();
         const res = await AuthStore.registration({fio: inputs.fio.value, login: inputs.login.value, password: inputs.password.value})
         setServerResponse(res);
