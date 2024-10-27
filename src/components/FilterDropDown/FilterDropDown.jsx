@@ -1,4 +1,4 @@
-import DatePickerComponent from './DatePickerComponent';
+import DatePickerComponent from './components/DatePickerComponent.jsx';
 import { Input } from 'rsuite';
 import { observer } from "mobx-react-lite";
 import './FilterDropDown.scss';
@@ -7,12 +7,10 @@ const FilterDropDown = ({...props}) => {
     const {
         isActive
     } = props;
-    const setResponsible = (e) => {
-        
+    const onChange = (value) => {
         TaskStore.setFilters({
-            filter2: e
+            employeeFilter: value
         });
-        console.log(TaskStore.filters);
     }
     return(
         <div className={isActive ? 'FilterDropDownDiv' : 'FilterDropDownDiv hidden'}>
@@ -20,7 +18,7 @@ const FilterDropDown = ({...props}) => {
                 <p>Выберите период:</p>
                 <DatePickerComponent />
                 <p>Выберите ответственного:</p>
-                <Input onChange={setResponsible}/>
+                <Input onChange={onChange}/>
             </div>
         </div>
     );

@@ -1,23 +1,31 @@
+import {observer} from "mobx-react-lite";
 import CanbanColumn from "./components/CanbanColumn.jsx";
-import {tasksFinish,tasksWork,tasksBack} from "../../constants/Canban/mock-data.js";
+import {useEffect} from "react";
+import LoaderStore from "../../store/LoaderStore.js";
+import TaskStore from "../../store/TaskStore.js";
 
-const Canban = ({...props}) => {
+const Canban = () => {
+    useEffect(() => {
+        async function fetch() {
+            LoaderStore.showLocalLoader();
+            await TaskStore.getCanban();
+            LoaderStore.hideLocalLoader();
+        }
+        fetch();
+    }, [])
+
     return (
         <div className="Canban">
-            <CanbanColumn
-                name={'Беклог'}
-                tasks={tasksBack}
-            />
-            <CanbanColumn
-                name={'В процессе'}
-                tasks={tasksWork}
-            />
-            <CanbanColumn
-                name={'Выполнено'}
-                tasks={tasksFinish}
-            />
+            {Object.keys(TaskStore.canbanObj).length && TaskStore.canbanObj.map(
+                (value,index) => <CanbanColumn
+                    name={value.columnName}
+                    tasks={value.tasks}
+                    addable={index === 0}
+                    key={index}
+                />
+            )}
         </div>
     )
 }
 
-export default Canban;
+export default observer(Canban);

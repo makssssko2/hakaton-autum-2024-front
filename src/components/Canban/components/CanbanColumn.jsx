@@ -1,28 +1,36 @@
 import { observer } from "mobx-react-lite";
 import CanbanTask from "./CanbanTask.jsx";
+import {valueFilter,dateFilter} from "../../../utils/Filters/index.js";
 import TaskStore from "../../../store/TaskStore.js";
 const CanbanColumn = ({...props}) => {
     const {
         tasks,
-        name
+        name,
+        addable
     } = props;
     return (
         <div className="Canban__column Canban-column">
             <div className="Canban-column__head">
                 <h2 className="Canban-column__title">{name}</h2>
-                <button className="Canban-column__add">+</button>
+                {addable && <button className="Canban-column__add">+</button>}
             </div>
             <div className="Canban-column__content">
                 {tasks
-                .filter((value) => value.name.toLowerCase().includes(TaskStore.searchValue.toLowerCase()))
-                //.filter((value) => value.author.toLowerCase().includes(TaskStore.filters.filter2.toLowerCase()))
-                /*const filteredData = data.filter(item => 
-  item.date >= startDate && item.date <= endDate
-); */
-                .map((value,index) =>
+                    .filter((value) => valueFilter(value.name.toLowerCase(),TaskStore.searchValue.toLowerCase()))
+                    .filter((value) =>
+                        TaskStore.filters.employeeFilter && value.employee ?
+                        valueFilter(value.employee.toLowerCase(),TaskStore.filters.employeeFilter.toLowerCase()) :
+                        !TaskStore.filters.employeeFilter
+                    )
+                    .filter((value) =>
+                        TaskStore.filters.dateFilter ?
+                        dateFilter(value.createDate) :
+                        true
+                    )
+                    .map((value,index) =>
                     <CanbanTask
                         name={value.name}
-                        author={value.author}
+                        employee={value.employee}
                         priority={value.priority}
                         id={value.id}
                         key={index}
