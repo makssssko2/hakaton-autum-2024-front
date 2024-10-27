@@ -5,25 +5,26 @@ import TaskStore from "../../../store/TaskStore.js";
 const CanbanColumn = ({...props}) => {
     const {
         tasks,
-        name
+        name,
+        addable
     } = props;
     return (
         <div className="Canban__column Canban-column">
             <div className="Canban-column__head">
                 <h2 className="Canban-column__title">{name}</h2>
-                <button className="Canban-column__add">+</button>
+                {addable && <button className="Canban-column__add">+</button>}
             </div>
             <div className="Canban-column__content">
                 {tasks
                     .filter((value) => valueFilter(value.name.toLowerCase(),TaskStore.searchValue.toLowerCase()))
                     .filter((value) =>
-                        TaskStore.filters.employeeFilter ?
+                        TaskStore.filters.employeeFilter && value.employee ?
                         valueFilter(value.employee.toLowerCase(),TaskStore.filters.employeeFilter.toLowerCase()) :
-                        true
+                        !TaskStore.filters.employeeFilter
                     )
                     .filter((value) =>
                         TaskStore.filters.dateFilter ?
-                        dateFilter(value.date) :
+                        dateFilter(value.createDate) :
                         true
                     )
                     .map((value,index) =>

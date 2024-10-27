@@ -7,7 +7,6 @@ const dateFilter = (value) => {
 }
 
 const valueFilter = (value,valueToCompare) => {
-    console.log(value,valueToCompare)
     return value.includes(valueToCompare)
 }
 
