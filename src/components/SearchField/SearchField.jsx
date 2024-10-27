@@ -1,22 +1,23 @@
 import {observer} from "mobx-react-lite";
 import { useState } from "react";
 import './SearchField.scss';
-import axios from 'axios';
 import { API_URL } from "../../constants/endpoints/endpointConst.js";
 import Filter from '../../assets/icons/Header/Filter.jsx';
 import ProfileIcon from '../../assets/icons/Header/ProfileIcon.jsx';
 import SearchInput from '../SearchInput/SearchInput.jsx';
 import UploadIcon from '../../assets/icons/Header/UploadIcon.jsx';
-import AuthStore from "../../store/AuthStore.js";
-import LoaderStore from "../../store/LoaderStore.js";
 import FilterDropDown from "../FilterDropDown/FilterDropDown.jsx";
-const SearchField = () => {
+import ProfileDropDown from "../ProfileDropDown/ProfileDropDown.jsx";
 
+const SearchField = () => {
+    
     const [isDropDownActive, setDropDownActive] = useState(false);
-    const clickHandler = async () => {
-        LoaderStore.showLocalLoader();
-        await AuthStore.logout();
-        LoaderStore.hideLocalLoader();
+    const [isProfileDropDownActive, setProfileDropDownActive] = useState(false);
+    const toggleProfileDropDown = () => {
+        setProfileDropDownActive(prevState => !prevState)
+        // LoaderStore.showLocalLoader();
+        // await AuthStore.logout();
+        // LoaderStore.hideLocalLoader();
     }
 
     const toggleDropDown = () => {
@@ -31,7 +32,7 @@ const SearchField = () => {
             setTimeout(() => window.URL.revokeObjectURL(url), 100);
         }
         catch (error) {
-            console.error('Хуйня:', error);
+            
           }
     }
         
@@ -47,11 +48,12 @@ const SearchField = () => {
             </button>
             <FilterDropDown isActive={isDropDownActive} />
             <SearchInput/>
-            <button onClick={clickHandler}>
+            <button onClick={toggleProfileDropDown}>
                 <ProfileIcon/>
             </button>
+            <ProfileDropDown isActive={isProfileDropDownActive}/>
         </div>
     );
     
 }
-export default observer(SearchField);
+export default SearchField;

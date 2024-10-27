@@ -41,7 +41,7 @@ const TaskModal = () => {
             {showTitleChange ? <TextEditor prevValue={prevValue} setPrevValue={setPrevValue} setShowTitleChange={setShowTitleChange}/> : 
                 
             <div className="TaskModal__headWithPencil">
-                <h2 className="TaskModal__title">{parse(prevValue)}</h2>
+                <p className="TaskModal__field">{parse(prevValue)}</p>
                 <button onClick={toggleTitleChange}><Pencil /></button> 
             </div>
             }
