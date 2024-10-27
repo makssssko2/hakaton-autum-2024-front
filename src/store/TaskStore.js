@@ -1,11 +1,11 @@
 import { makeAutoObservable, runInAction } from "mobx";
 
 class TaskStore {
-    filter;
+    filters;
     searchValue;
     canbanObj;
     constructor() {
-        this.filter = false;
+        this.filters = {};
         this.searchValue = '';
         this.canbanObj = {};
         makeAutoObservable(this, {}, { autoBind: true });
@@ -14,7 +14,14 @@ class TaskStore {
     setSearchValue(value) {
         runInAction(() => {
             this.searchValue = value;
-        })
+        });
+    }
+
+    setFilters(value){
+        runInAction(() => {
+            this.filters = {...this.filters,...value};
+        });
+        console.log(JSON.stringify(this.filters));
     }
 
 

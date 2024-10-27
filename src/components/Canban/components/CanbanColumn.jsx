@@ -1,5 +1,6 @@
 import { observer } from "mobx-react-lite";
 import CanbanTask from "./CanbanTask.jsx";
+import {valueFilter,dateFilter} from "../../../utils/Filters/index.js";
 import TaskStore from "../../../store/TaskStore.js";
 const CanbanColumn = ({...props}) => {
     const {
@@ -14,11 +15,21 @@ const CanbanColumn = ({...props}) => {
             </div>
             <div className="Canban-column__content">
                 {tasks
-                .filter((value) => value.name.toLowerCase().includes(TaskStore.searchValue.toLowerCase()))
-                .map((value,index) =>
+                    .filter((value) => valueFilter(value.name.toLowerCase(),TaskStore.searchValue.toLowerCase()))
+                    .filter((value) =>
+                        TaskStore.filters.employeeFilter ?
+                        valueFilter(value.employee.toLowerCase(),TaskStore.filters.employeeFilter.toLowerCase()) :
+                        true
+                    )
+                    .filter((value) =>
+                        TaskStore.filters.dateFilter ?
+                        dateFilter(value.date) :
+                        true
+                    )
+                    .map((value,index) =>
                     <CanbanTask
                         name={value.name}
-                        author={value.author}
+                        employee={value.employee}
                         priority={value.priority}
                         id={value.id}
                         key={index}

@@ -6,7 +6,7 @@ const CanbanTask = ({...props}) => {
         name,
         id,
         priority,
-        author
+        employee
     } = props;
 
     const clickHandler = () => {
@@ -20,7 +20,7 @@ const CanbanTask = ({...props}) => {
                 <button className="Canban-task__menu" onClick={clickHandler}>
                     <div className="Canban-task__menu_line"/>
                 </button>
-                <p className="Canban-task__author">{author}</p>
+                <p className="Canban-task__author">{employee}</p>
             </div>
             <div className={`Canban-task__priority Canban-task__priority_${priority}`}/>
         </div>
