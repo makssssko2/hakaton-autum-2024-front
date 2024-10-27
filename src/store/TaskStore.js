@@ -41,7 +41,6 @@ class TaskStore {
         runInAction(() => {
             this.currentTask = response.data;
         })
-        console.log(JSON.stringify(this.currentTask));
     }
 
 

@@ -24,13 +24,10 @@ const TaskModal = () => {
         
         setShowDescChange(true);
     }
-    const toggleAuthorChange = () => {
-        setShowAuthorChange(true);
-    }
     useEffect(() => {
-        setPrevValue(parse(taskData.name));
-        setPrevDesc(parse(taskData.description));
-        setPrevAuthor(parse(taskData.author));
+        setPrevValue(parse(TaskStore.currentTask.name));
+        setPrevDesc(parse(TaskStore.currentTask.descryption));
+        setPrevAuthor(parse(TaskStore.currentTask.employee || 'Не назначен исполнитель'));
     },[]);
 
 
@@ -41,34 +38,28 @@ const TaskModal = () => {
         <Modal className={'TaskModal'}>
             <div className="TaskModal__head">
 
-                <h2 className="TaskModal__title">{TaskStore.currentTask.name}</h2>
-
             {showTitleChange ? <TextEditor prevValue={TaskStore.currentTask.name} setPrevValue={setPrevValue} setShowTitleChange={setShowTitleChange}/> : 
                 
             <div className="TaskModal__headWithPencil">
-                <h2 className="TaskModal__title">{prevValue}</h2>
+                <h2 className="TaskModal__title">{parse(prevValue)}</h2>
                 <button onClick={toggleTitleChange}><Pencil /></button> 
             </div>
             }
                 
 
                 <nav className="TaskModal__nav">
-                    <p className="TaskModal__createDate">{TaskStore.currentTask.createDate}</p>
+                    <p className="TaskModal__createDate">{`${TaskStore.currentTask.createDate}`.slice(0,10)}</p>
                     <button onClick={closeHandler}><Cross /></button>
                 </nav>
             </div>
             <div className="TaskModal__body">
-
-                
-                
-
-                <button onClick={toggleDescChange}><Pencil /></button> 
-                {showDescChange ? <TextEditor prevValue={TaskStore.currentTask.descryption} setPrevValue={setPrevDesc} setShowTitleChange={setShowDescChange}/> : 
-                <p className="TaskModal__field">{parse(prevDesc)}</p>
-                }
-                <button onClick={toggleAuthorChange}><Pencil /></button> 
-                {showAuthorChange ? <TextEditor prevValue={TaskStore.currentTask.employee || 'Не назначен исполнитель'} setPrevValue={setPrevAuthor} setShowTitleChange={setShowAuthorChange}/> : 
-                <p className="TaskModal__field">{parse(prevAuthor)}</p>
+                {showDescChange ? <TextEditor prevValue={TaskStore.currentTask.descryption} setPrevValue={setPrevDesc} setShowTitleChange={setShowDescChange}/> :
+                    <div><p className="TaskModal__field">{parse(prevDesc)}</p>
+                    <button onClick={toggleDescChange}><Pencil/></button></div>
+            }
+                {showAuthorChange ? <TextEditor prevValue={TaskStore.currentTask.employee || 'Не назначен исполнитель'} setPrevValue={setPrevAuthor} setShowTitleChange={setShowAuthorChange}/> :
+                    <div><p className="TaskModal__field">{parse(prevAuthor)}</p>
+                        <button onClick={toggleDescChange}><Pencil/></button></div>
                 }
 
             </div>
@@ -76,12 +67,6 @@ const TaskModal = () => {
                 {/* <TextEditor/> */}
             </div>
             <div className="TaskModal__footer">
-                <nav className="TaskModal__nav">
-                    <button className="Canban-task__menu">
-                        <div className="Canban-task__menu_line"/>
-                    </button>
-                    <p className="TaskModal__text">Меню</p>
-                </nav>
                 <button className="TaskModal__button">Сохранить</button>
             </div>
         </Modal>

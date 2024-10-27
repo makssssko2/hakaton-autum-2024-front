@@ -13,7 +13,6 @@ class LoaderStore {
         runInAction(() => {
             this.localLoaderLoading = true;
         })
-        console.log(this.localLoaderLoading);
     }
     hideLocalLoader() {
         runInAction(() => {
