@@ -24,16 +24,11 @@ const SearchField = () => {
     }
 
     const getFile = async () => {
-        const url = API_URL + '/export-file';
+        const url = API_URL + '/export-file/download';
 
         try {
-            const response = await axios.get(url, {
-              responseType: 'blob', // Указываем, что ожидаем файл в формате blob
-            });
-            const blob = response.data;
-            const fileUrl = window.URL.createObjectURL(blob);
-            window.open(fileUrl, '_blank');
-            setTimeout(() => window.URL.revokeObjectURL(fileUrl), 100);
+            window.open(url, '_blank');
+            setTimeout(() => window.URL.revokeObjectURL(url), 100);
         }
         catch (error) {
             console.error('Хуйня:', error);

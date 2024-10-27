@@ -1,0 +1,35 @@
+.quillBlock{
+    width: 70%;
+    position: relative;
+    svg.fieldChangeButtons{
+        position: absolute;
+        bottom: 12px;
+        right: 12px;
+        width:17px;
+        z-index: 2;
+    }
+    #checkmark{
+        bottom:10px;
+        right: 37px;
+        width: 22px;
+    }
+    div{
+        border-radius: 12px;
+        .ql-toolbar{
+            border-bottom-left-radius: 0px;
+            border-bottom-right-radius: 0px;
+            display: flex;
+            justify-content: space-between;
+        }
+        .ql-container{
+            border-top-left-radius: 0px;
+            border-top-right-radius: 0px;
+            .ql-editor{
+                max-width: 88%;
+                text-wrap: wrap;
+                text-overflow: ellipsis;
+            }
+        }
+    }
+    
+}
