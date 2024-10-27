@@ -26,7 +26,9 @@ const AddModal = () => {
         }
         if(!correctFlag) return;
         LoaderStore.showLocalLoader();
-        TaskStore.createTask({name: name.value,description: description.value})
+        TaskStore.createTask({name: name.value,description: description.value});
+        ModalStore.hideModal();
+        TaskStore.getCanban();
         LoaderStore.hideLocalLoader();
     }
     return (
