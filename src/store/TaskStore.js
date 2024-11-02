@@ -7,11 +7,13 @@ class TaskStore {
     searchValue;
     canbanObj;
     currentTask;
-    taskDragging;
 
+    taskClicked;
+    taskDragging;
     dragTaskX;
     dragTaskY;
     constructor() {
+        this.taskClicked = false;
         this.filters = {};
         this.searchValue = '';
         this.canbanObj = {};
@@ -39,11 +41,16 @@ class TaskStore {
         });
     }
 
+    setClicked(value) {
+        runInAction(() => {
+            this.taskClicked = value;
+        })
+    }
+
     setFilters(value){
         runInAction(() => {
             this.filters = {...this.filters,...value};
         });
-        console.log(JSON.stringify(this.filters));
     }
 
     async getCanban() {
@@ -59,17 +66,24 @@ class TaskStore {
             this.currentTask = response.data;
         })
     }
+
+    async deleteTask(id) {
+        await api.delete(`${CANBAN_GET}${id}`);
+        runInAction(() => {
+            this.currentTask = null;
+        })
+    }
     
     async sumbitChanges(){
         await api.put('',this.changingValues);
     }
 
     async createTask({name,description}) {
-        const res = await api.post(CANBAN_CREATE,{name,description});
+        await api.post(CANBAN_CREATE,{name,description});
     }
 
     async changeStatement({id,statement}) {
-        const res = await api.put(CANBAN_CHANGE_STATEMENT,{id,statement})
+        await api.put(CANBAN_CHANGE_STATEMENT,{id,statement})
     }
 
 

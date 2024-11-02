@@ -8,13 +8,15 @@ import ModalStore from "../../store/ModalStore.js";
 const Canban = () => {
     useEffect(() => {
         if(ModalStore.isOpen) return;
-        console.log(222222)
         async function fetch() {
-            LoaderStore.showLocalLoader();
             await TaskStore.getCanban();
+        }
+        try {
+            LoaderStore.showLocalLoader();
+            fetch();
+        } finally {
             LoaderStore.hideLocalLoader();
         }
-        fetch();
     }, [ModalStore.isOpen])
 
 

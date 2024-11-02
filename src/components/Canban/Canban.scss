@@ -72,6 +72,7 @@
     position: fixed;
     z-index: 2000;
     opacity: 0.5;
+    //transform: translateX(-50%) translateY(-50%);
   }
 
   &__priority {
@@ -135,7 +136,7 @@
       row-gap: 10px;
       text-align: center;
       flex-shrink: 0;
-      flex-basis: 150px;
+      flex-basis: 180px;
     }
     @media (max-width: 800px) {
       justify-content: space-around;
@@ -175,6 +176,7 @@
 }
 
 .Canban {
+  user-select: none;
   display: flex;
   justify-content: space-between;
   height: calc(100vh - 200px);

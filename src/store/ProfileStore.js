@@ -13,7 +13,6 @@ class ProfileStore {
         try{
             const response = await api.get(PROFILE_GET);
             runInAction(() => {
-                console.log(response);
                 this.userData = response.data;
             });
             console.log(this.userData);

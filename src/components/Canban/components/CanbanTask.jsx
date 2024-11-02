@@ -13,21 +13,25 @@ const CanbanTask = ({...props}) => {
         employee
     } = props;
 
-    const dragHandler = () => {
-        runInAction(() => {
-            TaskStore.taskDragging = id;
-        })
-    }
+    const dragHandler = (e) => {
+        setTimeout(() => {
+            if(TaskStore.taskClicked) TaskStore.setClicked(false);
+            else {
+                TaskStore.setDragPosition(e.clientX,e.clientY);
+                runInAction(() => {
+                    TaskStore.taskDragging = id;
+                    console.log(TaskStore.taskDragging)
+                })
+            }
+        },100)
 
-    const dropHandler = () => {
-        TaskStore.stopDrag();
     }
-
 
     const clickHandler = async () => {
-        console.log(111111);
         LoaderStore.showLocalLoader();
+        TaskStore.setClicked(true);
         await TaskStore.getTask(id);
+        TaskStore.currentTask.id = id;
         LoaderStore.hideLocalLoader();
         ModalStore.showModal('task');
     }
@@ -36,11 +40,11 @@ const CanbanTask = ({...props}) => {
         <div style={TaskStore.taskDragging === id ? {top: taskStore.dragTaskY, left: taskStore.dragTaskX} : null}
              className={`Canban__task Canban-task ${TaskStore.taskDragging === id ? 'Canban-task_drag' : null}`}
              onMouseDown={dragHandler}
-             onMouseUp={dropHandler}
+             onClick={clickHandler}
         >
             <h3 className="Canban-task__title">{name}</h3>
             <div className="Canban-task__footer">
-                <button className="Canban-task__menu" onClick={clickHandler}>
+                <button className="Canban-task__menu">
                     <div className="Canban-task__menu_line"/>
                 </button>
                 <p className="Canban-task__author">{employee || 'Не назначен'}</p>

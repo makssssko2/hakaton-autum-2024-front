@@ -8,6 +8,7 @@ import './TaskModal.scss';
 import ModalStore from "../../store/ModalStore.js";
 
 import TaskStore from "../../store/TaskStore.js";
+import LoaderStore from "../../store/LoaderStore.js";
 
 const TaskModal = () => {
     const [showTitleChange, setShowTitleChange] = useState(false);
@@ -33,6 +34,14 @@ const TaskModal = () => {
 
     const closeHandler = () => {
         ModalStore.hideModal();
+    }
+
+    const deleteHandler = async () => {
+        LoaderStore.showLocalLoader();
+        console.log(JSON.stringify(TaskStore.currentTask));
+        await TaskStore.deleteTask(TaskStore.currentTask.id);
+        ModalStore.hideModal();
+        LoaderStore.hideLocalLoader();
     }
     return (
         <Modal className={'TaskModal'}>
@@ -67,7 +76,7 @@ const TaskModal = () => {
                 {/* <TextEditor/> */}
             </div>
             <div className="TaskModal__footer">
-                <button className="TaskModal__button">Сохранить</button>
+                <button className="TaskModal__button" onClick={deleteHandler}>Удалить</button>
             </div>
         </Modal>
     )
