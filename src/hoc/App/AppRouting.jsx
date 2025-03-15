@@ -3,7 +3,7 @@ import MainPage from "../../pages/MainPage/MainPage.jsx";
 import DeskPage from "../../pages/DeskPage/DeskPage.jsx";
 import LoginPage from "../../pages/LoginPage/LoginPage.jsx";
 import RegistrationPage from "../../pages/RegistrationPage/RegistrationPage.jsx";
-import PrivateRoute from "../private/privateRoute.jsx";
+import PrivateRoute from "/src/hoc/private/PrivateRoute.jsx";
 import PageNotFound from "../../pages/PageNotFound/PageNotFound.jsx";
 
 const AppRouting = () => {
